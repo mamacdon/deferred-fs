@@ -22,7 +22,7 @@
     "orion"
   ],
   "author": "Orion contributors",
-  "license": "EDL",
+  "license": "EPL+EDL",
   "devDependencies": {
     "promise-tests": "~2.1.1"
   }
