@@ -24,6 +24,6 @@
   "author": "Orion contributors",
   "license": "EPL+EDL",
   "devDependencies": {
-    "promise-tests": "~2.1.1"
+    "mocha": "~1.7.4"
   }
 }
