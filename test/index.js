@@ -4,7 +4,7 @@ var fs = require('fs');
 var os = require('os');
 var path = require('path');
 var Deferred = require('../lib/orion-deferred/Deferred');
-var DFS = '../lib/dfs';
+var DFS = '../index.js';
 
 var tests = {};
 tests.test_load_module = function() {
