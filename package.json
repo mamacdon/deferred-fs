@@ -1,6 +1,6 @@
 {
   "name": "deferred-fs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Provides a promise-based API for Node's filesystem APIs.",
   "main": "lib/dfs.js",
   "directories": {
