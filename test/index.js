@@ -16,6 +16,11 @@ describe('dfs', function() {
 	it('can be require()d ok', function() {
 		require(DFS);
 	});
+	it('exports Deferred', function() {
+		var exported = require(DFS).Deferred;
+		assert.ok(exported);
+		assert.equal(exported, Deferred);
+	});
 	it('works with #exists()', function(done) {
 		dfs.exists('.').then(function(exists) {
 			if (exists) {

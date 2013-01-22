@@ -2,13 +2,13 @@
   "name": "deferred-fs",
   "version": "0.0.3",
   "description": "Provides a promise-based API for Node's filesystem APIs.",
-  "main": "lib/dfs.js",
+  "main": "lib/main.js",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/index.js"
+    "test": "mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,6 @@
   "author": "Orion contributors",
   "license": "EPL+EDL",
   "devDependencies": {
-    "mocha": "~1.7.4"
+    "mocha": "*"
   }
 }

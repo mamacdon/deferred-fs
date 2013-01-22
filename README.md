@@ -49,7 +49,27 @@ and implement high-level error handling.
 
 ## Promise API
 The promise object returned by deferred-fs's asynchronous methods has the familiar "then" API:
+
 * ```then(onResolve, onReject)```
 
 Internally these promises are implemented using the Deferred library from [Eclipse Orion](http://eclipse.org/orion). This means they're 100% 
 compliant with the [Promises/A+ specification](https://github.com/promises-aplus/promises-spec).
+
+## Deferred API
+deferred-fs also exports Orion's Deferred library, giving you access to a richer API than simple promises:
+
+```js
+var Deferred = require('deferred-fs').Deferred;
+
+var promises = [ new Deferred().resolve('resolved!'), new Deferred().reject('rejected :(') ];
+Deferred.all(promises).then(
+  function(results) {
+    console.log('All promises resolved: ' + results.join(', '));
+  }, function(err) {
+    console.log('An error occurred: ' + err);
+  });
+```
+
+Consult the [Deferred JSDoc](https://orionhub.org/jsdoc/symbols/orion.Deferred.html) for details of the available API methods. In addition to Promises/A+ compliance,
+Orion's Deferred also implements some evolving APIs like [progress](https://github.com/promises-aplus/progress-spec) and 
+[cancellation](https://github.com/promises-aplus/cancellation-spec).
