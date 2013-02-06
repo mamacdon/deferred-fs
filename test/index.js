@@ -1,4 +1,4 @@
-/*global console process require describe it beforeEach*/
+/*global Buffer console process require describe it beforeEach*/
 var assert = require('assert');
 var fs = require('fs');
 var os = require('os');
@@ -7,7 +7,7 @@ var mocha = require('mocha');
 var Deferred = require('../lib/orion-deferred/Deferred');
 var DFS = '../index.js';
 
-describe('dfs', function() {
+describe('deferred-fs', function() {
 	var dfs;
 
 	beforeEach(function() {
@@ -16,12 +16,12 @@ describe('dfs', function() {
 	it('can be require()d ok', function() {
 		require(DFS);
 	});
-	it('exports Deferred', function() {
+	it('#Deferred exported', function() {
 		var exported = require(DFS).Deferred;
 		assert.ok(exported);
 		assert.equal(exported, Deferred);
 	});
-	it('works with #exists()', function(done) {
+	it('#exists()', function(done) {
 		dfs.exists('.').then(function(exists) {
 			if (exists) {
 				done();
@@ -30,12 +30,13 @@ describe('dfs', function() {
 			}
 		}, done);
 	});
-	it('works with #readFile()', function(done) {
-		var temp = path.join(os.tmpDir(), 'tempRead.txt'), tempData = 'read';
-		fs.writeFile(temp, tempData, function(err) {
+	it('#readFile()', function(done) {
+		var file = path.join(os.tmpDir(), 'tempRead.txt'), tempData = 'read';
+		fs.writeFile(file, tempData, function(err) {
 			if (err) { done(err); }
-			dfs.readFile(temp).then(function(data) {
+			dfs.readFile(file).then(function(data) {
 				try {
+					assert.equal(Buffer.isBuffer(data), true, 'Should get a buffer');
 					assert.equal(data.toString(), tempData, 'Correct data was read');
 					done();
 				} catch (e) {
@@ -44,10 +45,26 @@ describe('dfs', function() {
 			}, done); 
 		});
 	});
-	it('works with #writeFile()', function(done) {
-		var temp = path.join(os.tmpDir(), 'tempWrite.txt'), tempData = 'write';
-		dfs.writeFile(temp, tempData).then(function() {
-			fs.readFile(temp, function(err, data) {
+	it('#readFile() with encoding', function(done) {
+		var file = path.join(os.tmpDir(), 'tempRead.txt'), tempData = 'read';
+		fs.writeFile(file, tempData, function(err) {
+			if (err) { done(err); }
+			dfs.readFile(file, 'utf8').then(function(data) {
+				try {
+					assert.equal('string', typeof data);
+					assert.equal(false, Buffer.isBuffer(data));
+					assert.equal(data.toString(), tempData, 'Correct data was read');
+					done();
+				} catch (e) {
+					done(e);
+				}
+			}, done);
+		});
+	});
+	it('#writeFile()', function(done) {
+		var file = path.join(os.tmpDir(), 'tempWrite.txt'), tempData = 'write';
+		dfs.writeFile(file, tempData).then(function() {
+			fs.readFile(file, function(err, data) {
 				if (err) { done(err); }
 				try {
 					assert.equal(data.toString(), tempData, 'Correct data was written');
