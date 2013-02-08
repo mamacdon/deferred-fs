@@ -3,7 +3,6 @@ var assert = require('assert');
 var fs = require('fs');
 var os = require('os');
 var path = require('path');
-var mocha = require('mocha');
 var Deferred = require('../lib/orion-deferred/Deferred');
 var DFS = '../index.js';
 
