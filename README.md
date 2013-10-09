@@ -14,8 +14,7 @@ This will install deferred-fs into your project's ```node_modules``` subdirector
 
 ## Deferred-fs API
 
-The object returned by ```require('deferred-fs')``` works exactly like Node's ```fs``` library, except that its asynchronous methods return a 
-promise object instead of accepting a callback argument.
+The object returned by ```require('deferred-fs')``` works exactly like Node's ```fs``` library, except that its asynchronous methods return a promise object instead of accepting a callback argument.
 
 Here's an example showing how to use ```writeFile``` to asynchronously write a file and print a completion message when done:
 
@@ -52,8 +51,7 @@ The promise object returned by deferred-fs's asynchronous methods has the famili
 
 * ```then(onResolve, onReject)```
 
-Internally these promises are implemented using the Deferred library from [Eclipse Orion](http://eclipse.org/orion). This means they're 100% 
-compliant with the [Promises/A+ specification](https://github.com/promises-aplus/promises-spec).
+Internally these promises are implemented using the Deferred library from [Eclipse Orion](http://eclipse.org/orion). This means they're 100% compliant with the [Promises/A+ specification](https://github.com/promises-aplus/promises-spec), version 1.1.
 
 ## Deferred API
 deferred-fs also exports Orion's Deferred library, giving you access to a richer API than simple promises:
