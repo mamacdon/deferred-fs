@@ -2,6 +2,9 @@
 
 Provides a promise-based API for Node.js's [filesystem API](http://nodejs.org/api/fs.html).
 
+## Requirements
+Node.js
+
 ## Installation
 
 The easiest way is to install deferred-fs using npm, like this:
